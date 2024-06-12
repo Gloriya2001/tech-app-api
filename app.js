@@ -27,7 +27,15 @@ app.post("/add", (req, res) => {
 
 app.post("/search", (req, res) => {
 
-    res.send("hello")
+    let input = req.body
+    techmodel.find(input).then(
+
+        (data) => {
+            res.json(data)
+        }
+
+
+    ).catch()
 
 })
 
