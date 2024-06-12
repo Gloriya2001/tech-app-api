@@ -8,11 +8,13 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+mongoose.connect("mongodb+srv://gloria2001:gloria2001@cluster0.ipg35w1.mongodb.net/techDB?retryWrites=true&w=majority&appName=Cluster0")
+
 
 app.post("/add", (req, res) => {
 
     let input = req.body
-    let tech =  new techmodel(input)
+    let tech = new techmodel(input)
     tech.save()
     console.log(tech)
     res.json({ "status": "sucess" })
@@ -35,7 +37,7 @@ app.post("/search", (req, res) => {
 
 app.post("/delete", (req, res) => {
 
-    res.send("Success")
+
 
 })
 
@@ -44,7 +46,16 @@ app.post("/delete", (req, res) => {
 
 
 app.post("/view", (req, res) => {
-    res.send("view")
+
+
+    techmodel.find().then(
+
+        (data) => {
+            res.json(data)
+        }
+
+
+    ).catch()
 
 })
 
